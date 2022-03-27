@@ -1,0 +1,30 @@
+* {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.header {
+    font-style: italic;
+    color: darkgreen;
+}
+
+p {
+    font-size: large;
+}
+
+
+
+
+
+
+/*buttons*/
+button {
+    padding: 5px 10px;
+   color: blueviolet; 
+   background-color: antiquewhite;
+   border-radius: 25px;
+}
+button:hover {
+    font-size: large;
+}
+
