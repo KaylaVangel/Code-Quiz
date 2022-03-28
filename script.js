@@ -40,7 +40,7 @@ const questionArray = [questionsOne, questionTwo, questionThree, questionFour]
 
 let currentQuestion=0
 function nextPage() {
-   
+   // set the question data in the html//
     console.log(questionArray[currentQuestion])
     currentQuestion++
 };
