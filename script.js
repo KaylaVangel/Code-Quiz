@@ -34,8 +34,15 @@ const questionFour = {
     answer4: "all of the above",
 }
 
-const questionArray = [questionsOne, questionTwo, questionThree, questionFour]
+const questionFive = {
+    question:"The condition in an if/else statement is enclosed with _.",
+    answer1:"quotes",
+    answer2:"curly brackets",
+    answer3:"parenthesis",
+    answer4:"square breackets",
+}
 
+const questionArray = [questionsOne, questionTwo, questionThree, questionFour, questionFive]
 
 
 let currentQuestion=0
