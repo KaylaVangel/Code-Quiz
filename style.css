@@ -28,8 +28,13 @@ button {
    border-radius: 25px;
    display:flex;
    flex-direction: row-reverse; 
+   font-size: larger;
 }
 
+#start{
+    margin: 107px 518px;
+    float: right;
+}
 button:hover {
     font-size: large;
 }
@@ -44,4 +49,9 @@ button:hover {
     text-decoration: underline;
     font-size: x-large;
     color: crimson;
+}
+
+#timer{
+    text-align: end;
+    padding: 45px;
 }

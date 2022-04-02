@@ -1,7 +1,7 @@
 //onclick start quiz button new question comes up with 4 buttons with potential answers and timer begins//
 
 //set up questions//
-const questionsOne = {
+const questionOne = {
     question: "Commonly used data types DO NOT include:",
     answer1: "strings",
     answer2: "booleans",
@@ -33,7 +33,7 @@ const questionFour = {
     question: "Arrays in Javascript can be used to store _.",
     answer1: "numbers and strings",
     answer2: "other arrays",
-    answer3: "boolleans",
+    answer3: "booleans",
     answer4: "all of the above",
     correct: "all of the above",
 }
@@ -47,9 +47,17 @@ const questionFive = {
     correct: "parenthesis",
 }
 //question array//
-const questionArray = [questionsOne, questionTwo, questionThree, questionFour, questionFive];
+const questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive];
 
 let currentQuestion = -1;
+
+var time = 60;
+function updateCount() {
+    time = time - 1;
+    document.getElementById("timer").innerHTML = time;
+    setTimeout(updateCount, 1000);
+}
+updateCount();
 
 function insertQuestion() {
     document.getElementById("questions").innerHTML = questionArray[currentQuestion].question;
@@ -62,13 +70,15 @@ function insertQuestion() {
 //End of exam reached//
 function end() {
     document.getElementById("start").innerText = "Try Again";
-    document.getElementById("questions").style.display="none";
+    document.getElementById("questions").style.display = "none";
     document.getElementById("a").style.display = "none";
     document.getElementById("b").style.display = "none";
     document.getElementById("c").style.display = "none";
     document.getElementById("d").style.display = "none";
-    document.getElementById("answer_results").style.display= "none";
+    document.getElementById("answer_results").style.display = "none";
     currentQuestion = -1;
+    let userName= prompt("Please enter your name");
+        document.getElementById("name").innerHTML= userName + " " + "Score";
 }
 
 
@@ -86,10 +96,13 @@ function nextPage() {
         document.getElementById("b").removeAttribute("disabled");
         document.getElementById("c").removeAttribute("disabled");
         document.getElementById("d").removeAttribute("disabled");
+        document.getElementById("questions").style.display ="block";
         insertQuestion();
-        document.getElementById("answer_results").style.display= "block";
+        document.getElementById("answer_results").style.display = "block";
         document.getElementById("answer_results").innerHTML = "";
         document.getElementById("intro").style.display = "none";
+        
+            
     } else {
         end();
     }
@@ -115,7 +128,6 @@ function answerClick(btnClicked) {
     document.getElementById("answer_results").innerHTML = display;
 };
 
-//reset all parameters for main page when start again//
 
 // //counter function//
 
