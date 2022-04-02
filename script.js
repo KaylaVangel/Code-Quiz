@@ -44,13 +44,33 @@ const questionFive = {
 
 const questionArray = [questionsOne, questionTwo, questionThree, questionFour, questionFive]
 
-
 let currentQuestion=0
+
+function insertQuestion() {
+    document.getElementById("questions").innerHTML=questionArray[currentQuestion].question;
+    document.getElementById("a").innerHTML=questionArray[currentQuestion].answer1;
+    document.getElementById("b").innerHTML=questionArray[currentQuestion].answer2;
+    document.getElementById("c").innerHTML=questionArray[currentQuestion].answer3;
+    document.getElementById("d").innerHTML=questionArray[currentQuestion].answer4;
+}
+
 function nextPage() {
-   // set the question data in the html//
-    console.log(questionArray[currentQuestion])
+    document.getElementById("start").innerText="Next";
+    document.getElementById('start').setAttribute("disabled", "disabled");
+    insertQuestion();
     currentQuestion++
 };
+
+function answerClick(){
+    document.getElementById('start').removeAttribute("disabled");
+    document.getElementById("a").setAttribute("disabled,disabled");
+    document.getElementById("b").setAttribute("disabled,disabled");
+    document.getElementById("c").setAttribute("disabled,disabled");
+    document.getElementById("d").setAttribute("disabled,disabled");
+}
+
+
+
 // //counter function//
 
 // //final score displayed at end and form to enter name//
