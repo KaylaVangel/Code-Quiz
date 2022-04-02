@@ -39,69 +39,91 @@ const questionFour = {
 }
 
 const questionFive = {
-    question:"The condition in an if/else statement is enclosed with _.",
-    answer1:"quotes",
-    answer2:"curly brackets",
-    answer3:"parenthesis",
-    answer4:"square breackets",
+    question: "The condition in an if/else statement is enclosed with _.",
+    answer1: "quotes",
+    answer2: "curly brackets",
+    answer3: "parenthesis",
+    answer4: "square breackets",
     correct: "parenthesis",
 }
-
+//question array//
 const questionArray = [questionsOne, questionTwo, questionThree, questionFour, questionFive];
 
-let currentQuestion=-1;
+let currentQuestion = -1;
 
 function insertQuestion() {
-    document.getElementById("questions").innerHTML=questionArray[currentQuestion].question;
-    document.getElementById("a").innerHTML=questionArray[currentQuestion].answer1;
-    document.getElementById("b").innerHTML=questionArray[currentQuestion].answer2;
-    document.getElementById("c").innerHTML=questionArray[currentQuestion].answer3;
-    document.getElementById("d").innerHTML=questionArray[currentQuestion].answer4;
+    document.getElementById("questions").innerHTML = questionArray[currentQuestion].question;
+    document.getElementById("a").innerHTML = questionArray[currentQuestion].answer1;
+    document.getElementById("b").innerHTML = questionArray[currentQuestion].answer2;
+    document.getElementById("c").innerHTML = questionArray[currentQuestion].answer3;
+    document.getElementById("d").innerHTML = questionArray[currentQuestion].answer4;
 };
 
+//End of exam reached//
+function end() {
+    document.getElementById("start").innerText = "Try Again";
+    document.getElementById("questions").style.display="none";
+    document.getElementById("a").style.display = "none";
+    document.getElementById("b").style.display = "none";
+    document.getElementById("c").style.display = "none";
+    document.getElementById("d").style.display = "none";
+    document.getElementById("answer_results").style.display= "none";
+    currentQuestion = -1;
+}
+
+
+//when start button clicked//
 function nextPage() {
     currentQuestion++
-    document.getElementById("start").innerText="Next";
-    document.getElementById('start').setAttribute("disabled", "disabled");
-    document.getElementById('a').removeAttribute("disabled");
-    document.getElementById('b').removeAttribute("disabled");
-    document.getElementById('c').removeAttribute("disabled");
-    document.getElementById('d').removeAttribute("disabled");
-    insertQuestion();
-    document.getElementById("results").innerHTML="";
-    
+    if (currentQuestion < questionArray.length) {
+        document.getElementById("start").innerText = "Next";
+        document.getElementById("start").setAttribute("disabled", "disabled");
+        document.getElementById("a").style.display = "flex";
+        document.getElementById("b").style.display = "flex";
+        document.getElementById("c").style.display = "flex";
+        document.getElementById("d").style.display = "flex";
+        document.getElementById("a").removeAttribute("disabled");
+        document.getElementById("b").removeAttribute("disabled");
+        document.getElementById("c").removeAttribute("disabled");
+        document.getElementById("d").removeAttribute("disabled");
+        insertQuestion();
+        document.getElementById("answer_results").style.display= "block";
+        document.getElementById("answer_results").innerHTML = "";
+        document.getElementById("intro").style.display = "none";
+    } else {
+        end();
+    }
 };
-
-function answerClick(btnClicked){
+//when answer button clicked//
+function answerClick(btnClicked) {
     document.getElementById("start").removeAttribute("disabled");
-    document.getElementById("a").setAttribute("disabled","disabled");
-    document.getElementById("b").setAttribute("disabled","disabled");
-    document.getElementById("c").setAttribute("disabled","disabled");
-    document.getElementById("d").setAttribute("disabled","disabled");
+    document.getElementById("a").setAttribute("disabled", "disabled");
+    document.getElementById("b").setAttribute("disabled", "disabled");
+    document.getElementById("c").setAttribute("disabled", "disabled");
+    document.getElementById("d").setAttribute("disabled", "disabled");
     console.log(btnClicked.innerText);
     questionArray[currentQuestion].correct;
-    
+
     let display;
-    if (btnClicked.innerText==questionArray[currentQuestion].correct){
-        display= "Correct!";
-        
+    if (btnClicked.innerText == questionArray[currentQuestion].correct) {
+        display = "Correct!";
+
     } else {
-        display= "Incorrect";
+        display = "Incorrect";
     }
     console.log(display);
-    document.getElementById("results").innerHTML=display;
+    document.getElementById("answer_results").innerHTML = display;
 };
 
-
+//reset all parameters for main page when start again//
 
 // //counter function//
 
 // //final score displayed at end and form to enter name//
 
 // //local storage to store final score and name//
-// array of objects for questions 
+
 // counter 
-// highlight correct answer with explanation
-// create next button
+
 // if statements for if button is correct don't deduct from timer
 // timer and high score on top of page

@@ -10,22 +10,24 @@
 </head>
 <body>
     <h1 class="header">Coding Quiz Challenge</h1>
+    <div id="intro">
     <p>Try to answer the following code-related questions within the time limit. <br>
         Keep in mind that the incorrect answers will penalize your score/time by ten seconds!
         <br>Good Luck!
     </p>
+    </div>
     <div class="container"> 
         <label id="questions"></label>
-        <button type="button" onclick= "answerClick(this)" id="a"></button>
-        <button type="button" onclick= "answerClick(this)" id="b"></button>
-        <button type="button" onclick= "answerClick(this)" id="c"></button>
-        <button type="button" onclick= "answerClick(this)" id="d"></button>
+        <button type="button" onclick= "answerClick(this)" style= "display:none" id="a"></button>
+        <button type="button" onclick= "answerClick(this)" style= "display:none" id="b"></button>
+        <button type="button" onclick= "answerClick(this)" style= "display:none" id="c"></button>
+        <button type="button" onclick= "answerClick(this)" style= "display:none" id="d"></button>
     </div>
-    <div id="results"></div>
+    <div id="answer_results"></div>
     <div class="button">
     <button type="button" onclick="nextPage()"id="start">Start Quiz</button>
     </div>
-
+    <div id="end"></div>
   
 
     <div>

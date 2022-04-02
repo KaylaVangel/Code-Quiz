@@ -38,3 +38,10 @@ button:hover {
     display: flex;
     margin: 20px auto;
 }
+
+
+#answer_results {
+    text-decoration: underline;
+    font-size: x-large;
+    color: crimson;
+}
