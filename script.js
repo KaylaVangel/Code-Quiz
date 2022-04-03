@@ -51,13 +51,20 @@ const questionArray = [questionOne, questionTwo, questionThree, questionFour, qu
 
 let currentQuestion = -1;
 
+
+
 var time = 60;
 function updateCount() {
     time = time - 1;
     document.getElementById("timer").innerHTML = time;
-    setTimeout(updateCount, 1000);
+    if(time > 0) {
+        setTimeout(updateCount, 1000);
+    }
+    if(time==0 && currentQuestion > questionArray.length ){
+        end();
+    }
 }
-updateCount();
+
 
 function insertQuestion() {
     document.getElementById("questions").innerHTML = questionArray[currentQuestion].question;
@@ -70,6 +77,7 @@ function insertQuestion() {
 //End of exam reached//
 function end() {
     document.getElementById("start").innerText = "Try Again";
+    document.getElementById("start").removeAttribute("disabled");
     document.getElementById("questions").style.display = "none";
     document.getElementById("a").style.display = "none";
     document.getElementById("b").style.display = "none";
@@ -77,13 +85,29 @@ function end() {
     document.getElementById("d").style.display = "none";
     document.getElementById("answer_results").style.display = "none";
     currentQuestion = -1;
-    let userName= prompt("Please enter your name");
-        document.getElementById("name").innerHTML= userName + " " + "Score";
+    let userName = prompt("Please enter your name");
+    document.getElementById("name").style.display = "block";
+    document.getElementById("name").innerHTML = userName + " " + "High Score=" + time;
+    function storeScore(){
+        localStorage.setItem(userName, time); 
+    }
+    storeScore();
+    
+    function getScore(){
+        var x= localStorage.getItem("userName", time); 
+        document.getElementById("highScores").innerHTML=x;
+    }
+    getScore();
+    
 }
 
 
-//when start button clicked//
+//start button clicked//
 function nextPage() {
+    if (currentQuestion == -1) {
+        document.getElementById("name").style.display = "none";
+        time=60;
+    }
     currentQuestion++
     if (currentQuestion < questionArray.length) {
         document.getElementById("start").innerText = "Next";
@@ -96,13 +120,15 @@ function nextPage() {
         document.getElementById("b").removeAttribute("disabled");
         document.getElementById("c").removeAttribute("disabled");
         document.getElementById("d").removeAttribute("disabled");
-        document.getElementById("questions").style.display ="block";
+        document.getElementById("questions").style.display = "block";
         insertQuestion();
         document.getElementById("answer_results").style.display = "block";
         document.getElementById("answer_results").innerHTML = "";
         document.getElementById("intro").style.display = "none";
+        if (time == 60) {
+            updateCount();
+        }
         
-            
     } else {
         end();
     }
@@ -116,13 +142,14 @@ function answerClick(btnClicked) {
     document.getElementById("d").setAttribute("disabled", "disabled");
     console.log(btnClicked.innerText);
     questionArray[currentQuestion].correct;
-
+    //results displayed//
     let display;
     if (btnClicked.innerText == questionArray[currentQuestion].correct) {
         display = "Correct!";
 
     } else {
         display = "Incorrect";
+        time=time-10;
     }
     console.log(display);
     document.getElementById("answer_results").innerHTML = display;
