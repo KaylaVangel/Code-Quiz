@@ -21,7 +21,7 @@ const questionTwo = {
 }
 
 const questionThree = {
-    question: "String values must be enclosed within_ when being assigned to variables.",
+    question: "String values must be enclosed within___ when being assigned to variables.",
     answer1: "commas",
     answer2: "curly brackets",
     answer3: "quotes",
@@ -30,7 +30,7 @@ const questionThree = {
 }
 
 const questionFour = {
-    question: "Arrays in Javascript can be used to store _.",
+    question: "Arrays in Javascript can be used to store ___.",
     answer1: "numbers and strings",
     answer2: "other arrays",
     answer3: "booleans",
@@ -46,27 +46,58 @@ const questionFive = {
     answer4: "square breackets",
     correct: "parenthesis",
 }
+
+const questionSix = {
+    question: "Which keyword allows the user to exit the current loop?",
+    answer1: "hoisting",
+    answer2: "break",
+    answer3: "del",   
+    answer4: "span",
+    correct: "break",
+}
+
+const questionSeven = {
+    question: "Which of the following statements is true?",
+    answer1: "function expressions can be called before they are declared",
+    answer2: "function declartions can be called before they are declared",
+    answer3: "falsy values evaluate to true in a conditional statement",
+    answer4: "concatination can join two or more strings with the use of the & operator",
+    correct: "function declartions can be called before they are declared",
+}
+
+const questionEight = {
+    question: "In JavaScript 'This' refers to an ___.",
+    answer1: "string",
+    answer2: "parameter",
+    answer3: "class",
+    answer4: "object",
+    correct: "object",
+}
+
+const questionNine = {
+    question: "Boolean functions can only represent___ ",
+    answer1: "integers",
+    answer2: "less than/greater than",
+    answer3: "true/false",
+    answer4: "arrays",
+    correct: "true/false",
+}
+
+const questionTen = {
+    question: "Which statement is true?",
+    answer1: "arrays use named indexes",
+    answer2: "objects use named indexes",
+    answer3: "objects always utilize square brackets",
+    answer4: "the index of an array begins at -1",
+    correct: "objects use named indexes",
+}
 //question array//
-const questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive];
+const questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, 
+    questionEight, questionNine, questionTen];
 
 let currentQuestion = -1;
 
 let numberOfPlays = 0;
-
-
-
-var time = 60;
-function updateCount() {
-    time = time - 1;
-    document.getElementById("timer").innerHTML = time;
-    if (time > 0) {
-        setTimeout(updateCount, 1000);
-    }
-    if (time == 0 && currentQuestion > questionArray.length) {
-        end();
-    }
-}
-
 
 function insertQuestion() {
     document.getElementById("questions").innerHTML = questionArray[currentQuestion].question;
@@ -117,6 +148,18 @@ function end() {
 
 }
 
+var time = 60;
+function updateCount() {
+    if (time > 0) {
+        time = time - 1;
+        document.getElementById("timer").innerHTML = time;
+        setTimeout(updateCount, 1000);
+    } else if (time <= 0 || currentQuestion > questionArray.length) {
+        end();
+    }
+}
+
+
 
 //start button clicked//
 function nextPage() {
@@ -165,7 +208,7 @@ function answerClick(btnClicked) {
 
     } else {
         display = "Incorrect";
-        time = time - 10;
+        time = time - 5;
     }
     console.log(display);
     document.getElementById("answer_results").innerHTML = display;

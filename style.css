@@ -59,3 +59,7 @@ ul{
    list-style-type: none;
    color: forestgreen;
 }
+
+h2 {
+    text-decoration: underline;
+}
