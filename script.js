@@ -51,16 +51,18 @@ const questionArray = [questionOne, questionTwo, questionThree, questionFour, qu
 
 let currentQuestion = -1;
 
+let numberOfPlays = 0;
+
 
 
 var time = 60;
 function updateCount() {
     time = time - 1;
     document.getElementById("timer").innerHTML = time;
-    if(time > 0) {
+    if (time > 0) {
         setTimeout(updateCount, 1000);
     }
-    if(time==0 && currentQuestion > questionArray.length ){
+    if (time == 0 && currentQuestion > questionArray.length) {
         end();
     }
 }
@@ -76,6 +78,7 @@ function insertQuestion() {
 
 //End of exam reached//
 function end() {
+    numberOfPlays++;
     document.getElementById("start").innerText = "Try Again";
     document.getElementById("start").removeAttribute("disabled");
     document.getElementById("questions").style.display = "none";
@@ -88,17 +91,30 @@ function end() {
     let userName = prompt("Please enter your name");
     document.getElementById("name").style.display = "block";
     document.getElementById("name").innerHTML = userName + " " + "High Score=" + time;
-    function storeScore(){
-        localStorage.setItem(userName, time); 
+    function storeScore() {
+
+        var x = "time" + numberOfPlays;
+        localStorage.setItem(x, time);
+
+        var y = "userName" + numberOfPlays;
+        localStorage.setItem(y, userName);
+
     }
     storeScore();
-    
-    function getScore(){
-        var x= localStorage.getItem("userName", time); 
-        document.getElementById("highScores").innerHTML=x;
+
+    function getScore() {
+        var list = document.getElementById("scores")
+            let listItem = document.createElement('li');
+            let x = "time" + numberOfPlays;
+            let y = "userName" + numberOfPlays;
+            let uN = localStorage.getItem(y);
+            let t = localStorage.getItem(x);
+            listItem.innerHTML="USER: " + uN + "&nbsp"+"&nbsp"+"&nbsp" + "SCORE: " + t ;
+            list.appendChild(listItem);
+        
     }
     getScore();
-    
+
 }
 
 
@@ -106,7 +122,7 @@ function end() {
 function nextPage() {
     if (currentQuestion == -1) {
         document.getElementById("name").style.display = "none";
-        time=60;
+        time = 60;
     }
     currentQuestion++
     if (currentQuestion < questionArray.length) {
@@ -128,7 +144,7 @@ function nextPage() {
         if (time == 60) {
             updateCount();
         }
-        
+
     } else {
         end();
     }
@@ -149,7 +165,7 @@ function answerClick(btnClicked) {
 
     } else {
         display = "Incorrect";
-        time=time-10;
+        time = time - 10;
     }
     console.log(display);
     document.getElementById("answer_results").innerHTML = display;

@@ -55,3 +55,7 @@ button:hover {
     text-align: end;
     padding: 45px;
 }
+ul{
+   list-style-type: none;
+   color: forestgreen;
+}
