@@ -199,7 +199,6 @@ function answerClick(btnClicked) {
     document.getElementById("b").setAttribute("disabled", "disabled");
     document.getElementById("c").setAttribute("disabled", "disabled");
     document.getElementById("d").setAttribute("disabled", "disabled");
-    console.log(btnClicked.innerText);
     questionArray[currentQuestion].correct;
     //results displayed//
     let display;
@@ -210,7 +209,6 @@ function answerClick(btnClicked) {
         display = "Incorrect";
         time = time - 5;
     }
-    console.log(display);
     document.getElementById("answer_results").innerHTML = display;
 };
 
