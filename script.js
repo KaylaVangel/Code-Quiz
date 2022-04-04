@@ -43,7 +43,7 @@ const questionFive = {
     answer1: "quotes",
     answer2: "curly brackets",
     answer3: "parenthesis",
-    answer4: "square breackets",
+    answer4: "square brackets",
     correct: "parenthesis",
 }
 
@@ -51,7 +51,7 @@ const questionSix = {
     question: "Which keyword allows the user to exit the current loop?",
     answer1: "hoisting",
     answer2: "break",
-    answer3: "del",   
+    answer3: "del",
     answer4: "span",
     correct: "break",
 }
@@ -59,10 +59,10 @@ const questionSix = {
 const questionSeven = {
     question: "Which of the following statements is true?",
     answer1: "function expressions can be called before they are declared",
-    answer2: "function declartions can be called before they are declared",
+    answer2: "function declarations can be called before they are declared",
     answer3: "falsy values evaluate to true in a conditional statement",
     answer4: "concatination can join two or more strings with the use of the & operator",
-    correct: "function declartions can be called before they are declared",
+    correct: "function declarations can be called before they are declared",
 }
 
 const questionEight = {
@@ -92,7 +92,7 @@ const questionTen = {
     correct: "objects use named indexes",
 }
 //question array//
-const questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, 
+const questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven,
     questionEight, questionNine, questionTen];
 
 let currentQuestion = -1;
@@ -135,28 +135,34 @@ function end() {
 
     function getScore() {
         var list = document.getElementById("scores")
-            let listItem = document.createElement('li');
-            let x = "time" + numberOfPlays;
-            let y = "userName" + numberOfPlays;
-            let uN = localStorage.getItem(y);
-            let t = localStorage.getItem(x);
-            listItem.innerHTML="USER: " + uN + "&nbsp"+"&nbsp"+"&nbsp" + "SCORE: " + t ;
-            list.appendChild(listItem);
-        
+        let listItem = document.createElement('li');
+        let x = "time" + numberOfPlays;
+        let y = "userName" + numberOfPlays;
+        let uN = localStorage.getItem(y);
+        let t = localStorage.getItem(x);
+        listItem.innerHTML = "USER: " + uN + "&nbsp" + "&nbsp" + "&nbsp" + "SCORE: " + t;
+        list.appendChild(listItem);
+
     }
     getScore();
+    time = -1;
 
 }
 
 var time = 60;
 function updateCount() {
+    if (time == 0 || currentQuestion > questionArray.length) {
+        time = -1;
+        end();
+        return;
+    }
+
     if (time > 0) {
         time = time - 1;
         document.getElementById("timer").innerHTML = time;
         setTimeout(updateCount, 1000);
-    } else if (time <= 0 || currentQuestion > questionArray.length) {
-        end();
     }
+
 }
 
 
